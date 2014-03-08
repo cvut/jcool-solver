@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.cvut.felk.cig.jcool.solver;
 
 import cz.cvut.felk.cig.jcool.core.*;
@@ -16,28 +12,29 @@ import java.util.Arrays;
  * <li>providing analytical gradient/hessian detection</li>
  * <li>returning analytical or numerical gradient/hessian or
  * NullObject gradient/hessian</li>
- *  
+ *
  * (Strategy pattern) Numerical gradient/hessian calculation strategy
  *
  * @author ytoh
  */
 public class BaseObjectiveFunction implements ObjectiveFunction {
 
-    protected Function          function                = null;
-    private FunctionGradient    gradient                = null;
-    private FunctionHessian     hessian                 = null;
-    private boolean             hasAnalyticalGradient   = false;
-    private boolean             hasAnalyticalHessian    = false;
-    private NumericalGradient   numericalGradient       = null;
-    private NumericalHessian    numericalHessian        = null;
-    private StatisticsBuilder   statistics              = null;
-    protected FunctionBounds    bounds                  = null;
-    private boolean             isFunctionBound         = false;
-    private FunctionDynamics    dynamics                = null;
-    private boolean             isFunctionDynamic       = false;
+    protected Function function = null;
+    private FunctionGradient gradient = null;
+    private FunctionHessian hessian = null;
+    private boolean hasAnalyticalGradient = false;
+    private boolean hasAnalyticalHessian = false;
+    private NumericalGradient numericalGradient = null;
+    private NumericalHessian numericalHessian = null;
+    private StatisticsBuilder statistics = null;
+    protected FunctionBounds bounds = null;
+    private boolean isFunctionBound = false;
+    private FunctionDynamics dynamics = null;
+    private boolean isFunctionDynamic = false;
 
     /**
-     * Constructs an <code>ObjectiveFunction</code> able of analyzing the supplied
+     * Constructs an <code>ObjectiveFunction</code> able of analyzing the
+     * supplied
      * function, gathering statistics and calculating numerical gradient/hessian
      * after a certain strategy.
      *
@@ -57,12 +54,12 @@ public class BaseObjectiveFunction implements ObjectiveFunction {
             hessian = (FunctionHessian) function;
         }
 
-        if(function instanceof FunctionBounds) {
+        if (function instanceof FunctionBounds) {
             bounds = (FunctionBounds) function;
             isFunctionBound = true;
         }
 
-        if(function instanceof FunctionDynamics) {
+        if (function instanceof FunctionDynamics) {
             dynamics = (FunctionDynamics) function;
             isFunctionDynamic = true;
         }
@@ -100,13 +97,13 @@ public class BaseObjectiveFunction implements ObjectiveFunction {
         return isFunctionDynamic;
     }
 
-    public boolean inBounds(Point point) throws ArrayIndexOutOfBoundsException{
-        if (isFunctionBound){
+    public boolean inBounds(Point point) throws ArrayIndexOutOfBoundsException {
+        if (isFunctionBound) {
             double[] positions = point.toArray();
             double[] minima = bounds.getMinimum();
             double[] maxima = bounds.getMaximum();
-            for (int i = 0; i < function.getDimension(); i++){
-                if ( positions[i] < minima[i] || positions[i] > maxima[i]){
+            for (int i = 0; i < function.getDimension(); i++) {
+                if (positions[i] < minima[i] || positions[i] > maxima[i]) {
                     return false;
                 }
             }
@@ -134,7 +131,7 @@ public class BaseObjectiveFunction implements ObjectiveFunction {
         }
 
         // return calculated gradient according to certain strategy
-        if(numericalGradient != null) {
+        if (numericalGradient != null) {
             return numericalGradient.gradientAt(this, point);
         }
 
@@ -150,7 +147,7 @@ public class BaseObjectiveFunction implements ObjectiveFunction {
         }
 
         // return calculated hessian according to certain strategy
-        if(numericalHessian != null) {
+        if (numericalHessian != null) {
             return numericalHessian.hessianAt(this, point);
         }
 
@@ -158,11 +155,14 @@ public class BaseObjectiveFunction implements ObjectiveFunction {
     }
 
     /**
-     * Retrieve a snapshot of the current function invocation statistics represented
+     * Retrieve a snapshot of the current function invocation statistics
+     * represented
      * as an immutable {@link Statistics} instance.
      *
-     * <p>The returned <code>Statistics</code> instance can be queried about
-     * the number of <code>valueAt</code>, <code>gradientAt</code> and <code>hessianAt</code>
+     * <p>
+     * The returned <code>Statistics</code> instance can be queried about
+     * the number of <code>valueAt</code>, <code>gradientAt</code> and
+     * <code>hessianAt</code>
      * invocations.</p>
      *
      * @return invocation count statistics
@@ -172,7 +172,7 @@ public class BaseObjectiveFunction implements ObjectiveFunction {
     }
 
     public double[] getMinimum() {
-        if(isFunctionBound) {
+        if (isFunctionBound) {
             return bounds.getMinimum();
         }
 
@@ -182,7 +182,7 @@ public class BaseObjectiveFunction implements ObjectiveFunction {
     }
 
     public double[] getMaximum() {
-        if(isFunctionBound) {
+        if (isFunctionBound) {
             return bounds.getMaximum();
         }
 
@@ -192,20 +192,20 @@ public class BaseObjectiveFunction implements ObjectiveFunction {
     }
 
     public void resetGenerationCount() {
-        if (isFunctionDynamic){
+        if (isFunctionDynamic) {
             dynamics.resetGenerationCount();
         }
     }
 
     public void nextGeneration() {
-        if (isFunctionDynamic){
+        if (isFunctionDynamic) {
             dynamics.nextGeneration();
         }
     }
 
     public void setGeneration(int currentGeneration) {
-        if (isFunctionDynamic){
+        if (isFunctionDynamic) {
             dynamics.setGeneration(currentGeneration);
         }
     }
-} 
+}

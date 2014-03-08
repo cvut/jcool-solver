@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package cz.cvut.felk.cig.jcool.solver;
 
 import org.apache.log4j.Logger;
@@ -14,6 +9,7 @@ import org.apache.log4j.Logger;
  * @author ytoh
  */
 public class SolverFactory {
+
     static final Logger logger = Logger.getLogger(SolverFactory.class);
 
     /**
@@ -25,7 +21,7 @@ public class SolverFactory {
      * iterations
      */
     public static Solver getNewInstance(int maxIterations) {
-        if(logger.isDebugEnabled()) {
+        if (logger.isDebugEnabled()) {
             logger.debug("creating a basic solver with " + maxIterations + " iterations");
         }
 
@@ -42,10 +38,10 @@ public class SolverFactory {
      * or after <code>timenout</code> miliseconds
      */
     public static Solver getNewInstance(int maxIterations, long timeout) {
-        if(logger.isDebugEnabled()) {
+        if (logger.isDebugEnabled()) {
             logger.debug("creating a decorated solver with " + timeout + "ms timeout");
         }
-        
+
         return new TimeoutSolver(getNewInstance(maxIterations), timeout);
     }
 }

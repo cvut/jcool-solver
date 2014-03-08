@@ -1,19 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package cz.cvut.felk.cig.jcool.solver;
 
 /**
  * Optimization computation statistics gathering class.
  *
- * <p>Statistics are gathered by {@link cz.cvut.felk.cig.jcool.core.ObjectiveFunction}s.
+ * <p>
+ * Statistics are gathered by
+ * {@link cz.cvut.felk.cig.jcool.core.ObjectiveFunction}s.
  * and presented as immutable end results of the optimization process.</p>
  *
  * @author ytoh
  */
 public final class Statistics {
+
     // the number of times the function was evaluated for its value
     private final int valueAt;
     // the number of times the function was evaluated for its gradient
@@ -25,14 +23,14 @@ public final class Statistics {
      * Create an instance of <code>Statistics</code> wrapping the evaluation
      * counts.
      *
-     * @param valueAt number of valueAt evaluations
+     * @param valueAt    number of valueAt evaluations
      * @param gradientAt number of gradientAt evaluations
-     * @param hessianAt number of hessianAt evaluations
+     * @param hessianAt  number of hessianAt evaluations
      */
     public Statistics(int valueAt, int gradientAt, int hessianAt) {
-        this.valueAt    = valueAt;
+        this.valueAt = valueAt;
         this.gradientAt = gradientAt;
-        this.hessianAt  = hessianAt;
+        this.hessianAt = hessianAt;
     }
 
     /**
@@ -46,7 +44,8 @@ public final class Statistics {
     }
 
     /**
-     * Returns the number invocations of {@link cz.cvut.felk.cig.jcool.core.ObjectiveFunction#gradientAt(cz.cvut.felk.cig.jcool.core.Point)}
+     * Returns the number invocations of
+     * {@link cz.cvut.felk.cig.jcool.core.ObjectiveFunction#gradientAt(cz.cvut.felk.cig.jcool.core.Point)}
      *
      * @return number of gradient evaluations
      */
@@ -55,7 +54,8 @@ public final class Statistics {
     }
 
     /**
-     * Returns the number invocations of {@link cz.cvut.felk.cig.jcool.core.ObjectiveFunction#hessianAt(cz.cvut.felk.cig.jcool.core.Point)}
+     * Returns the number invocations of
+     * {@link cz.cvut.felk.cig.jcool.core.ObjectiveFunction#hessianAt(cz.cvut.felk.cig.jcool.core.Point)}
      *
      * @return number of hessian evaluations
      */
@@ -64,7 +64,8 @@ public final class Statistics {
     }
 
     /**
-     * Returns the number invocations of {@link cz.cvut.felk.cig.jcool.core.ObjectiveFunction#valueAt(cz.cvut.felk.cig.jcool.core.Point)}
+     * Returns the number invocations of
+     * {@link cz.cvut.felk.cig.jcool.core.ObjectiveFunction#valueAt(cz.cvut.felk.cig.jcool.core.Point)}
      *
      * @return number of value evaluations
      */
@@ -78,20 +79,22 @@ public final class Statistics {
     }
 
     /**
-     * <code>StatisticsBuilder</code> is used to create {@link Statistics} instances
+     * <code>StatisticsBuilder</code> is used to create {@link Statistics}
+     * instances
      * by providing convenience methods for incrementing counts.
      *
      * (Builder pattern)
      */
     public static final class StatisticsBuilder {
+
         private int valueAt;
         private int gradientAt;
         private int hessianAt;
 
         private StatisticsBuilder() {
-            this.valueAt    = 0;
+            this.valueAt = 0;
             this.gradientAt = 0;
-            this.hessianAt  = 0;
+            this.hessianAt = 0;
         }
 
         /**
@@ -116,7 +119,8 @@ public final class Statistics {
         }
 
         /**
-         * Create an immutable instance as a snapshot of the statistics currently
+         * Create an immutable instance as a snapshot of the statistics
+         * currently
          * held by this builder.
          *
          * @return an immutable {@link Statistics} instance.

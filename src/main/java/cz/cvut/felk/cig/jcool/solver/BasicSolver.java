@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.cvut.felk.cig.jcool.solver;
 
 import cz.cvut.felk.cig.jcool.core.*;
@@ -23,23 +19,24 @@ import java.util.List;
  *
  * @author ytoh
  */
-@Component(name="Basic solver", description="Simple solver encapsulating the optimization method calculation and checking method stop condition together with a max iteration stop condition.")
+@Component(name = "Basic solver", description = "Simple solver encapsulating the optimization method calculation and checking method stop condition together with a max iteration stop condition.")
 public class BasicSolver implements Solver {
+
     static final Logger logger = Logger.getLogger(BasicSolver.class);
 
-    private Function                                function;
-    private StopCondition[]                         methodConditions;
-    private StopCondition[]                         systemConditions;
-    private IterationStopCondition                  iterations;
-    private Synchronization                         synchronization;
-    private Consumer<? super Synchronization>       synchronizationConsumer;
+    private Function function;
+    private StopCondition[] methodConditions;
+    private StopCondition[] systemConditions;
+    private IterationStopCondition iterations;
+    private Synchronization synchronization;
+    private Consumer<? super Synchronization> synchronizationConsumer;
     private OptimizationMethod<? extends Telemetry> method;
-    private BaseObjectiveFunction                   baseObjectiveFunction;
+    private BaseObjectiveFunction baseObjectiveFunction;
     // convenience shortcut
-    private List<StopCondition>                     metConditions;
+    private List<StopCondition> metConditions;
 
-    @Property(name="Maximum number of interations", description="How many optimization steps are allowed before the optimization process is stopped.")
-    @Range(from=1, to=Integer.MAX_VALUE)
+    @Property(name = "Maximum number of interations", description = "How many optimization steps are allowed before the optimization process is stopped.")
+    @Range(from = 1, to = Integer.MAX_VALUE)
     private int maxIterations = Integer.MAX_VALUE;
 
     public int getMaxIterations() {
@@ -50,7 +47,7 @@ public class BasicSolver implements Solver {
         this.maxIterations = maxIterations;
     }
 
-    @Property(name="Use delay")
+    @Property(name = "Use delay")
     private boolean useDelay = false;
 
     public boolean isUseDelay() {
@@ -61,8 +58,8 @@ public class BasicSolver implements Solver {
         this.useDelay = useDelay;
     }
 
-    @Property(name="Delay between steps",description="How many miniseconds should this solver wait before doing another optimization step")
-    @Range(from=0,to=Integer.MAX_VALUE)
+    @Property(name = "Delay between steps", description = "How many miniseconds should this solver wait before doing another optimization step")
+    @Range(from = 0, to = Integer.MAX_VALUE)
     private int milisDelay;
 
     public int getMilisDelay() {
@@ -93,16 +90,16 @@ public class BasicSolver implements Solver {
     public void init(Function function, OptimizationMethod method) throws Exception {
         this.function = function;
         this.method = method;
-        
+
         baseObjectiveFunction = new BaseObjectiveFunction(function);
-        if(!baseObjectiveFunction.hasAnalyticalGradient()) {
+        if (!baseObjectiveFunction.hasAnalyticalGradient()) {
             baseObjectiveFunction.setNumericalGradient(new CentralDifferenceGradient());
         }
-        
-        if(!baseObjectiveFunction.hasAnalyticalHessian()) {
+
+        if (!baseObjectiveFunction.hasAnalyticalHessian()) {
             baseObjectiveFunction.setNumericalHessian(new CentralDifferenceHessian());
         }
-        
+
         synchronization = new Synchronization();
 
         method.init(baseObjectiveFunction);
@@ -112,21 +109,21 @@ public class BasicSolver implements Solver {
         metConditions = new ArrayList<StopCondition>();
 
         iterations = new IterationStopCondition(maxIterations);
-        systemConditions = new StopCondition[] {iterations};
+        systemConditions = new StopCondition[]{iterations};
     }
 
     public void addSystemStopCondition(StopCondition condition) {
         systemConditions = (StopCondition[]) ArrayUtils.add(systemConditions, condition);
     }
 
-    public void solve() throws Exception{
+    public void solve() throws Exception {
         int iteration = 0;
         logger.debug("main cycle start");
 
         while (checkStopConditions()) {
             logger.debug("main cycle");
 
-            if(useDelay) {
+            if (useDelay) {
                 try {
                     Thread.sleep(milisDelay);
                 } catch (InterruptedException ex) {
@@ -134,16 +131,16 @@ public class BasicSolver implements Solver {
                 }
             }
 
-            logger.info(iteration + " " +baseObjectiveFunction.getStatistics());
+            logger.info(iteration + " " + baseObjectiveFunction.getStatistics());
 
             synchronization = new Synchronization(++iteration);
-            if(synchronizationConsumer != null) {
+            if (synchronizationConsumer != null) {
                 synchronizationConsumer.notifyOf(this);
             }
             iterations.nextIteration();
 
             // main optimization cycle
-            method.optimize();            
+            method.optimize();
         }
     }
 
@@ -151,27 +148,24 @@ public class BasicSolver implements Solver {
      * Convenience method for checking stop condition satisfaction.
      *
      * @return true if any of the custom/system stop conditions have been met,
-     * else if no stop conditions have been met
+     *         else if no stop conditions have been met
      */
     private boolean checkStopConditions() {
         logger.debug("checking stop conditions");
-
-        for (int i = 0; i < methodConditions.length; i++) {
-            if (methodConditions[i].isConditionMet()) {
-                if(logger.isDebugEnabled()) {
-                    logger.debug("condition met: " + methodConditions[i]);
+        for (StopCondition methodCondition : methodConditions) {
+            if (methodCondition.isConditionMet()) {
+                if (logger.isDebugEnabled()) {
+                    logger.debug("condition met: " + methodCondition);
                 }
-
-                metConditions.add(methodConditions[i]);
+                metConditions.add(methodCondition);
             }
         }
-        for (int i = 0; i < systemConditions.length; i++) {
-            if (systemConditions[i].isConditionMet()) {
-                if(logger.isDebugEnabled()) {
-                    logger.debug("condition met: " + systemConditions[i]);
+        for (StopCondition systemCondition : systemConditions) {
+            if (systemCondition.isConditionMet()) {
+                if (logger.isDebugEnabled()) {
+                    logger.debug("condition met: " + systemCondition);
                 }
-
-                metConditions.add(systemConditions[i]);
+                metConditions.add(systemCondition);
             }
         }
 

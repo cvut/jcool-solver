@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package cz.cvut.felk.cig.jcool.solver;
 
 import cz.cvut.felk.cig.jcool.core.Consumer;
@@ -19,22 +14,23 @@ import java.util.List;
 import java.util.concurrent.*;
 
 /**
- * A simple solver encapsulation running the optimization calculation in 
- * a separate thread and terminating it after a given time to prevent infinite 
+ * A simple solver encapsulation running the optimization calculation in
+ * a separate thread and terminating it after a given time to prevent infinite
  * looping or locks. (Decorator pattern)
  *
  * @author ytoh
  */
-@Component(name="Timeout solver")
+@Component(name = "Timeout solver")
 public class TimeoutSolver implements Solver {
+
     static final Logger logger = Logger.getLogger(TimeoutSolver.class);
 
     private ScheduledExecutorService scheduler;
     private Solver solver;
     private TimeoutStopCondition stopCondition;
 
-    @Property(name="Maximum solving time [s]")
-    @Range(from=1, to=Double.MAX_VALUE)
+    @Property(name = "Maximum solving time [s]")
+    @Range(from = 1, to = Double.MAX_VALUE)
     private double timeout;
 
     public double getTimeout() {
@@ -44,24 +40,25 @@ public class TimeoutSolver implements Solver {
     public void setTimeout(double timeout) {
         this.timeout = timeout;
     }
+
     /**
      * Constructs an instance of <code>TimeoutSolver</code> wrapping the given
      * solver and initializing the mechanism to terminate the optimization
      * calculation if it runs longer then the specified timeout period.
      *
-     * @param solver worker solver to be wrapped
+     * @param solver  worker solver to be wrapped
      * @param timeout maximum calculation period
      */
     TimeoutSolver(Solver solver, long timeout) {
-        this.solver        = solver;
-        this.timeout       = timeout;
+        this.solver = solver;
+        this.timeout = timeout;
     }
 
     public void init(Function function, OptimizationMethod method) throws Exception {
         logger.debug("initialization of timeout solver");
-        
-        this.scheduler     = Executors.newSingleThreadScheduledExecutor();
-        this.stopCondition = new TimeoutStopCondition((long)timeout);
+
+        this.scheduler = Executors.newSingleThreadScheduledExecutor();
+        this.stopCondition = new TimeoutStopCondition((long) timeout);
 
         solver.init(function, method);
         solver.addSystemStopCondition(stopCondition);
@@ -80,10 +77,10 @@ public class TimeoutSolver implements Solver {
         final ScheduledFuture<?> solverHandle = scheduler.schedule(innerSolver, 0L, TimeUnit.SECONDS);
 
         try {
-            solverHandle.get((long)timeout, TimeUnit.MILLISECONDS);
+            solverHandle.get((long) timeout, TimeUnit.MILLISECONDS);
         } catch (InterruptedException ex) {
             logger.error("Optimization stopped: User interrupt.", ex);
-            
+
         } catch (ExecutionException ex) {
             logger.error("Error occurred while optimizing", ex);
         } catch (TimeoutException ex) {
@@ -95,7 +92,7 @@ public class TimeoutSolver implements Solver {
     }
 
     public OptimizationResults getResults() {
-        if(stopCondition.isConditionMet()) { // optimization process reached its max running time
+        if (stopCondition.isConditionMet()) { // optimization process reached its max running time
             OptimizationResults innerResults = solver.getResults();
             // we need to add the timeout stop conditions to the list of met stop conditions
             List<StopCondition> conditions = new ArrayList<StopCondition>(innerResults.getMetConditions());

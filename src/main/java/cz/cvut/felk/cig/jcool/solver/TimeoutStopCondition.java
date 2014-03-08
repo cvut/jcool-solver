@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package cz.cvut.felk.cig.jcool.solver;
 
 import cz.cvut.felk.cig.jcool.core.StopCondition;
@@ -14,12 +9,13 @@ import java.util.Date;
  * @author ytoh
  */
 public class TimeoutStopCondition implements StopCondition {
+
     private long startDate;
     private long duration;
     private Date lastCheck;
 
     public TimeoutStopCondition(long duration) {
-        this.duration  = duration;
+        this.duration = duration;
         this.startDate = Long.MAX_VALUE;
     }
 

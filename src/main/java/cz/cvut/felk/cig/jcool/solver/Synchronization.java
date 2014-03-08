@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package cz.cvut.felk.cig.jcool.solver;
 
 import cz.cvut.felk.cig.jcool.core.*;
@@ -11,16 +6,19 @@ import cz.cvut.felk.cig.jcool.core.*;
  * Synchronization is a solver produced {@link Telemetry} that holds
  * the number of the current iteration (optimization step).
  *
- * <p><code>Synchronization</code> objects are immutable.</p>
+ * <p>
+ * <code>Synchronization</code> objects are immutable.</p>
  *
  * @author ytoh
  */
 public final class Synchronization implements Telemetry<Integer> {
+
     // number of the current optimization step
     private final int iteration;
 
     /**
-     * Creates a default instance of <code>Synchronization</code> with <code>0</code>
+     * Creates a default instance of <code>Synchronization</code> with
+     * <code>0</code>
      * as the number of the current iteration.
      */
     public Synchronization() {
