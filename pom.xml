@@ -4,7 +4,7 @@
     <groupId>cz.cvut.felk.cig.jcool</groupId>
     <artifactId>jcool-solver</artifactId>
     <packaging>jar</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <name>jcool-solver</name>
     <url>https://github.com/cvut/jcool-solver</url>
     <description>Java COntinuous Optimization Library - solver</description>
