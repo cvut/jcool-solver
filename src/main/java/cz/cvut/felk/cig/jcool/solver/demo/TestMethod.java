@@ -5,15 +5,15 @@
 
 package cz.cvut.felk.cig.jcool.solver.demo;
 
-import cz.cvut.felk.cig.jcool.core.Consumer;
-import cz.cvut.felk.cig.jcool.core.ObjectiveFunction;
-import cz.cvut.felk.cig.jcool.core.OptimizationException;
-import cz.cvut.felk.cig.jcool.core.OptimizationMethod;
-import cz.cvut.felk.cig.jcool.core.Point;
-import cz.cvut.felk.cig.jcool.core.SingleSolution;
-import cz.cvut.felk.cig.jcool.core.Solution;
-import cz.cvut.felk.cig.jcool.core.StopCondition;
-import cz.cvut.felk.cig.jcool.core.ValueTelemetry;
+import cz.cvut.fit.jcool.core.Consumer;
+import cz.cvut.fit.jcool.core.ObjectiveFunction;
+import cz.cvut.fit.jcool.core.OptimizationException;
+import cz.cvut.fit.jcool.core.OptimizationMethod;
+import cz.cvut.fit.jcool.core.Point;
+import cz.cvut.fit.jcool.core.SingleSolution;
+import cz.cvut.fit.jcool.core.Solution;
+import cz.cvut.fit.jcool.core.StopCondition;
+import cz.cvut.fit.jcool.core.ValueTelemetry;
 import java.util.Random;
 import org.ytoh.configurations.annotations.Component;
 import org.ytoh.configurations.annotations.OneOf;

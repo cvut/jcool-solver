@@ -5,8 +5,8 @@
 
 package cz.cvut.felk.cig.jcool.solver.demo;
 
-import cz.cvut.felk.cig.jcool.core.OptimizationException;
-import cz.cvut.felk.cig.jcool.core.StopCondition;
+import cz.cvut.fit.jcool.core.OptimizationException;
+import cz.cvut.fit.jcool.core.StopCondition;
 import cz.cvut.felk.cig.jcool.solver.OptimizationResults;
 import cz.cvut.felk.cig.jcool.solver.Solver;
 import cz.cvut.felk.cig.jcool.solver.SolverFactory;

@@ -1,9 +1,9 @@
 package cz.cvut.felk.cig.jcool.solver;
 
-import cz.cvut.felk.cig.jcool.core.Function;
-import cz.cvut.felk.cig.jcool.core.StopCondition;
-import cz.cvut.felk.cig.jcool.core.OptimizationMethod;
-import cz.cvut.felk.cig.jcool.core.Producer;
+import cz.cvut.fit.jcool.core.Function;
+import cz.cvut.fit.jcool.core.StopCondition;
+import cz.cvut.fit.jcool.core.OptimizationMethod;
+import cz.cvut.fit.jcool.core.Producer;
 
 /**
  * A solver uses an optimization method as a script or algorithm to find

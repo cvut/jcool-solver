@@ -1,8 +1,13 @@
 package cz.cvut.felk.cig.jcool.solver;
 
-import cz.cvut.felk.cig.jcool.core.*;
-import cz.cvut.felk.cig.jcool.utils.CentralDifferenceGradient;
-import cz.cvut.felk.cig.jcool.utils.CentralDifferenceHessian;
+import cz.cvut.fit.jcool.core.Consumer;
+import cz.cvut.fit.jcool.core.StopCondition;
+import cz.cvut.fit.jcool.core.Telemetry;
+import cz.cvut.fit.jcool.core.OptimizationException;
+import cz.cvut.fit.jcool.core.Function;
+import cz.cvut.fit.jcool.core.OptimizationMethod;
+import cz.cvut.fit.jcool.utils.CentralDifferenceGradient;
+import cz.cvut.fit.jcool.utils.CentralDifferenceHessian;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.log4j.Logger;
 import org.ytoh.configurations.PropertyState;

@@ -1,6 +1,6 @@
 package cz.cvut.felk.cig.jcool.solver;
 
-import cz.cvut.felk.cig.jcool.core.*;
+import cz.cvut.fit.jcool.core.Telemetry;
 
 /**
  * Synchronization is a solver produced {@link Telemetry} that holds

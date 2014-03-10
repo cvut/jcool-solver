@@ -5,12 +5,12 @@
 
 package cz.cvut.felk.cig.jcool.solver.demo;
 
-import cz.cvut.felk.cig.jcool.core.Function;
-import cz.cvut.felk.cig.jcool.core.FunctionGradient;
-import cz.cvut.felk.cig.jcool.core.FunctionHessian;
-import cz.cvut.felk.cig.jcool.core.Gradient;
-import cz.cvut.felk.cig.jcool.core.Hessian;
-import cz.cvut.felk.cig.jcool.core.Point;
+import cz.cvut.fit.jcool.core.Function;
+import cz.cvut.fit.jcool.core.FunctionGradient;
+import cz.cvut.fit.jcool.core.FunctionHessian;
+import cz.cvut.fit.jcool.core.Gradient;
+import cz.cvut.fit.jcool.core.Hessian;
+import cz.cvut.fit.jcool.core.Point;
 import java.util.Random;
 import org.ytoh.configurations.annotations.Component;
 import org.ytoh.configurations.annotations.OneOf;

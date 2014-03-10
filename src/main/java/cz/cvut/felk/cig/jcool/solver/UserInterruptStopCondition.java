@@ -1,6 +1,6 @@
 package cz.cvut.felk.cig.jcool.solver;
 
-import cz.cvut.felk.cig.jcool.core.StopCondition;
+import cz.cvut.fit.jcool.core.StopCondition;
 
 /**
  * A stub for a stop condition needed for calculation termination by the user

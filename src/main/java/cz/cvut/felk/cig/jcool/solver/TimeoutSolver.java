@@ -1,9 +1,9 @@
 package cz.cvut.felk.cig.jcool.solver;
 
-import cz.cvut.felk.cig.jcool.core.Consumer;
-import cz.cvut.felk.cig.jcool.core.Function;
-import cz.cvut.felk.cig.jcool.core.OptimizationMethod;
-import cz.cvut.felk.cig.jcool.core.StopCondition;
+import cz.cvut.fit.jcool.core.Consumer;
+import cz.cvut.fit.jcool.core.Function;
+import cz.cvut.fit.jcool.core.OptimizationMethod;
+import cz.cvut.fit.jcool.core.StopCondition;
 import org.apache.log4j.Logger;
 import org.ytoh.configurations.annotations.Component;
 import org.ytoh.configurations.annotations.Property;

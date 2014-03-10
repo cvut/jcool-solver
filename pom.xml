@@ -151,7 +151,7 @@
         <dependency>
             <groupId>cz.cvut.felk.cig.jcool</groupId>
             <artifactId>jcool-core</artifactId>
-            <version>1.1</version>
+            <version>1.2-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

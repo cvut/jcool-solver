@@ -1,6 +1,6 @@
 package cz.cvut.felk.cig.jcool.solver;
 
-import cz.cvut.felk.cig.jcool.core.StopCondition;
+import cz.cvut.fit.jcool.core.StopCondition;
 import java.util.Date;
 
 /**
