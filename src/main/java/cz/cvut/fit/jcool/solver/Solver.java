@@ -1,4 +1,4 @@
-package cz.cvut.felk.cig.jcool.solver;
+package cz.cvut.fit.jcool.solver;
 
 import cz.cvut.fit.jcool.core.Function;
 import cz.cvut.fit.jcool.core.StopCondition;

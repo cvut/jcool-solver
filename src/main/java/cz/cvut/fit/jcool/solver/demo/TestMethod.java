@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package cz.cvut.felk.cig.jcool.solver.demo;
+package cz.cvut.fit.jcool.solver.demo;
 
 import cz.cvut.fit.jcool.core.Consumer;
 import cz.cvut.fit.jcool.core.ObjectiveFunction;

@@ -1,4 +1,4 @@
-package cz.cvut.felk.cig.jcool.solver;
+package cz.cvut.fit.jcool.solver;
 
 import cz.cvut.fit.jcool.core.Consumer;
 import cz.cvut.fit.jcool.core.StopCondition;

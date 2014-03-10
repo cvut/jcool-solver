@@ -1,4 +1,4 @@
-package cz.cvut.felk.cig.jcool.solver;
+package cz.cvut.fit.jcool.solver;
 
 import cz.cvut.fit.jcool.core.ObjectiveFunction;
 import cz.cvut.fit.jcool.core.NumericalHessian;
@@ -12,7 +12,7 @@ import cz.cvut.fit.jcool.core.FunctionGradient;
 import cz.cvut.fit.jcool.core.Hessian;
 import cz.cvut.fit.jcool.core.FunctionBounds;
 import cz.cvut.fit.jcool.core.Point;
-import cz.cvut.felk.cig.jcool.solver.Statistics.StatisticsBuilder;
+import cz.cvut.fit.jcool.solver.Statistics.StatisticsBuilder;
 import java.util.Arrays;
 
 /**

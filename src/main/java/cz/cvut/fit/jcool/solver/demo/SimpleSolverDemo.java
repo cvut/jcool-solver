@@ -3,14 +3,14 @@
  * and open the template in the editor.
  */
 
-package cz.cvut.felk.cig.jcool.solver.demo;
+package cz.cvut.fit.jcool.solver.demo;
 
 import cz.cvut.fit.jcool.core.OptimizationException;
 import cz.cvut.fit.jcool.core.StopCondition;
-import cz.cvut.felk.cig.jcool.solver.OptimizationResults;
-import cz.cvut.felk.cig.jcool.solver.Solver;
-import cz.cvut.felk.cig.jcool.solver.SolverFactory;
-import cz.cvut.felk.cig.jcool.solver.Statistics;
+import cz.cvut.fit.jcool.solver.OptimizationResults;
+import cz.cvut.fit.jcool.solver.Solver;
+import cz.cvut.fit.jcool.solver.SolverFactory;
+import cz.cvut.fit.jcool.solver.Statistics;
 
 /**
  *

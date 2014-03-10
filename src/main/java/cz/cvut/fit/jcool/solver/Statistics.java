@@ -1,4 +1,4 @@
-package cz.cvut.felk.cig.jcool.solver;
+package cz.cvut.fit.jcool.solver;
 
 /**
  * Optimization computation statistics gathering class.
